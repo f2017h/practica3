@@ -12,9 +12,12 @@ import java.util.List;
 import java.util.Optional;
 
 public interface CarritoLineaRepo extends JpaRepository<CarritoLinea, Long> {
-    List<CarritoLinea> findByIdCarrito(Long idCarrito);
+    List<CarritoLinea> findByCarrito_IdCarrito(Long idCarrito);
     @Modifying
     @Transactional
     @Query("DELETE FROM CarritoLinea cl WHERE cl.carrito.idCarrito = :carritoId AND cl.idArticulo = :articuloId")
-    int deleteByCarritoIdAndArticuloId(@Param("carritoId") Long carritoId, @Param("articuloId") Long articuloId);
+    int deleteByCarrito_IdCarritoAndIdArticulo(@Param("carritoId") Long carritoId, @Param("articuloId") Long articuloId);
+    
+    @Query("SELECT cl FROM CarritoLinea cl JOIN FETCH cl.carrito WHERE cl.idCarritoLinea = :lineaId")
+    Optional<CarritoLinea> findByIdWithCarrito(@Param("lineaId") Long lineaId);
 }

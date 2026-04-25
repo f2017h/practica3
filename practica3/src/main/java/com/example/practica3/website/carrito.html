@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <link rel="stylesheet" href="carrito.css">
+    <title>Título obligatorio</title>
+
+</head>
+
+
+<body>
+    <h1 id = title>Cart</h1>
+
+    <ul class="bar">
+     <li><a href="website.html">Homepage</a></li>
+     <li><a href="products.html">Products</a></li>
+     <li><a href="carrito.html">Cart</a></li>
+     <li><a href="contact.html">Contact</a></li>
+    </ul>
+
+    <table style = "width: 100%">
+        <h2>Your cart</h2>
+        <thead>
+        <tr>
+            <th>Products</th>
+            <th> Name of product</th>
+            <th>Color</th>
+            <th>Price</th>
+            <th>Quantity</th> 
+            <th>Action</th>
+
+        </tr>
+        </thead>
+
+        <tbody id="cart-items">
+
+        </tbody>
+        <tfoot>
+<tr>
+    <td colspan="5"><strong>Total</strong></td>
+    <td id="cart-total">0 €</td>
+</tr>
+</tfoot>
+    </table>
+
+<form>
+ <h2>Form for your personal data</h2>
+ <fieldset>
+  <legend>Personal data</legend>
+  <p>
+   <label for="name_id">Name:</label><br>
+   <input type="text" id="name_id"><br>
+  </p>
+  <p>
+   <label for="phone_id">Telefone number:</label><br>
+   <input type="tel" id="phone_id"><br>
+  </p>
+  <p>
+   <label for="email_id">Email:</label><br>
+   <input type="email" id="email_id"><br>
+  </p>
+  <p>
+    <label for="address">Address</label><br>
+    <input type="text" id="address"><br>
+  </p>
+ </fieldset>
+ 
+ &nbsp;
+   <button type="button" onclick="feedbackButton()">Pay purchase</button>
+</form>
+
+&nbsp;
+
+   
+<script src="script.js"></script>
+</body>
+</html>

@@ -41,4 +41,20 @@ public class Carrito {
             cl.setCarrito(this);
         }
     }
+
+    public String getIdUsuario() {
+    return idUsuario;
+}
+
+    public void setIdUsuario(String idUsuario) {
+        this.idUsuario = idUsuario;
+    }
+
+    public String getCorreoUsuario() {
+        return correoUsuario;
+    }
+
+    public void setCorreoUsuario(String correoUsuario) {
+        this.correoUsuario = correoUsuario;
+    }
 }

@@ -1,0 +1,54 @@
+body {
+    background-color: lightyellow;
+}
+
+.bar {
+    display: flex;
+  list-style: none;
+  margin: 0;
+  background: rgb(248, 142, 160);
+  padding: 0;
+}
+
+.bar li {
+    flex: 1;
+}
+
+.bar a {
+    font-style: garamond;
+    text-align: center;
+  text-decoration: none;
+  display: block;
+  padding: 9px;
+  color: white;
+  user-select: none;
+}
+
+.bar li:hover {
+  background: purple;
+}
+
+
+#title {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 40px;
+    text-align: center;
+    color: rgb(254, 190, 62);
+}
+
+#product-heading{
+    font-family:'garamond', serif;
+    text-align: center;
+    color:darkcyan;
+}
+
+#product-image{
+  text-align: center;
+  font-family: Garamond, serif;
+  font-size: 20px;
+  color:blueviolet;
+}
+
+fieldset {
+  font-family: garamond, serif;
+}

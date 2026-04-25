@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <link rel="stylesheet" href="products.css">
+    <title>Título obligatorio</title>
+
+</head>
+
+
+<body>
+    <h1 id = title>Products</h1>
+
+    <ul class="bar">
+     <li><a href="website.html">Homepage</a></li>
+     <li><a href="products.html">Products</a></li>
+     <li><a href="carrito.html">Cart</a></li>
+     <li><a href="contact.html">Contact</a></li>
+    </ul>
+    &nbsp;
+    <h2 id="product-heading">Product 1</h2>
+    <figure id= "product-image">
+        <img alt = "Blue iphone" src = "https://static.carrefour.es/hd_510x_/crs/cdn_static/catalog/hd/658706_00_1.jpg" width = "250" height = "250">
+        <figcaption> Blue iphone 17 </figcaption>
+        <label> 13999 euros</label>
+    </figure>
+    <fieldset>
+     <legend>iPhone</legend>
+  <p>Type:
+   <ul>
+    <li>
+      <input type="radio" name = "iphoneType" value ="regular" id="iPhone_regular">
+     <label for="iPhone_regular">regular</label>
+    </li>
+   
+    </li>
+   </ul>
+  </p>
+  <p>
+   <label for="color_id">Color: blue</label><br>
+  </p>
+  <p>
+   <label for="amount_id">Amount:</label><br>
+   <input type="number" id="iphoneAmount" value="1" min="1">
+  </p>
+  <button onclick="addToCartFromUI(1, 13999, 'iphoneAmount')"> Add to cart </button>
+ </fieldset>
+
+    &nbsp;
+    <h2 id="product-heading">Product 2</h2>
+    <figure id= "product-image">
+        <img alt = "Headphones" src = "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcQmfaB88pK4zTjWL34-ij4S6OkDzsaAwP8mFdzwxbjW7HcrF_Lpcc3Ne8qwo7Vtr6v0IGntJqC7nE3bwc5_QJgof-PpVy2YpC3VKLTX_CeHm4s2-7w1FEc_IdsbdXMCsCU4LzJhhr7WM-E&usqp=CAc" width = "250" height = "250">
+        <figcaption> Headphones </figcaption>
+        <label> Buy 399 euros</label>
+    </figure>
+
+     <fieldset>
+     <legend>Headphones</legend>
+  <p>Type:
+   <ul>
+    <li>
+     <label>AirPods Max 2</label>
+    </li>
+   </ul>
+  </p>
+  <p>
+   <label for="color_id">Color: Blue</label><br>
+  </p>
+  <p>
+   <label for="amount_id">Amount:</label><br>
+   <input type="number" id="headphonesAmount" min="1" value="1">
+  </p>
+  <button onclick="addToCartFromUI(2, 399, 'headphonesAmount')"> Add to cart </button>
+ </fieldset>
+
+    &nbsp;
+    <h2 id="product-heading">Product 3</h2>
+    <figure id= "product-image">
+        <img alt = "Pink keyboard" src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBB6ldbfAvep1wdUhlGSic2j5SIvvppD8EcQ&s" width = "250" height = "250">
+        <figcaption> Pink keyboard </figcaption>
+        <label> 449 euros</label>
+    </figure>
+
+    <fieldset>
+     <legend>Headphones</legend>
+  <p>Type:
+   <ul>
+    <li>
+     <label>KiiBOOM Phantom 98 Pink</label>
+    </li>
+   </ul>
+  </p>
+  <p>
+   <label for="color_id">Color: Pink</label><br>
+  </p>
+  <p>
+   <label for="amount_id">Amount:</label><br>
+   <input type="number" id="keyboardAmount"min="1" value="1">
+  </p>
+  <button onclick="addToCartFromUI(3, 449, 'keyboardAmount')"> Add to cart </button>
+ </fieldset>
+
+ <tbody id="cart-body"></tbody>
+ <script src="script.js"></script>
+</body>
+</html>

@@ -1,3 +1,14 @@
+error id: file:///C:/Users/Felicia/Coding/Telematic%20programming/practica3/practica3/src/main/java/com/example/practica3/controlador/ControladorCarrito.java:_empty_/CarritoLinea#setCarrito#
+file:///C:/Users/Felicia/Coding/Telematic%20programming/practica3/practica3/src/main/java/com/example/practica3/controlador/ControladorCarrito.java
+empty definition using pc, found symbol in pc: _empty_/CarritoLinea#setCarrito#
+empty definition using semanticdb
+empty definition using fallback
+non-local guesses:
+
+offset: 993
+uri: file:///C:/Users/Felicia/Coding/Telematic%20programming/practica3/practica3/src/main/java/com/example/practica3/controlador/ControladorCarrito.java
+text:
+```scala
 package com.example.practica3.controlador;
 
 import com.example.practica3.entity.Carrito;
@@ -9,7 +20,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "http://127.0.0.1:3000")
 @RestController
 @RequestMapping("/api/carritos")
 public class ControladorCarrito {
@@ -25,7 +36,7 @@ public class ControladorCarrito {
             for(CarritoLinea linea : carritoNuevo.getCarritoLineas()) {
                 long lineCost = linea.getCostaLinea();
                 linea.setCostaLinea(lineCost);
-                linea.setCarrito(carritoNuevo);
+                linea.s@@etCarrito(carritoNuevo);
                 total += lineCost;
             }
             carritoNuevo.setPrecioTotal(total);
@@ -43,16 +54,16 @@ public class ControladorCarrito {
         return carritoServicio.getCarrito(id);
     }
 
-    @GetMapping("{carritoId}/lineas")
-    public List<CarritoLinea> getLineas(@PathVariable("carritoId") Long carritoId){
+    @GetMapping("{id}/lineas")
+    public List<CarritoLinea> getLineas(@PathVariable Long id){
 
-        return carritoServicio.getCarritoLinea(carritoId);
+        return carritoServicio.getCarritoLinea(id);
     }
 
-    @PostMapping("{carritoId}/lineas/{articleId}")
+    @PostMapping("{id}/lineas")
     @ResponseStatus(HttpStatus.CREATED)
-    public CarritoLinea addItem(@PathVariable Long carritoId, @PathVariable Long articleId, @RequestBody CarritoLinea cl){
-        return carritoServicio.addItem(carritoId, articleId, cl);
+    public CarritoLinea addItem(@PathVariable Long id, @RequestBody CarritoLinea cl){
+        return carritoServicio.addItem(id, cl);
     }
 
     @PutMapping("{id}/lineas/{articuloId}")
@@ -63,22 +74,13 @@ public class ControladorCarrito {
        return carritoServicio.incrementa(articuloId, id, unidades);
     }
 
-
     @DeleteMapping("{id}/lineas/{articuloId}")
     public Carrito deleteItem(
             @PathVariable Long id,
             @PathVariable Long articuloId){
         carritoServicio.deleteItem(id, articuloId);
         return carritoServicio.getCarrito(id);
-    } 
-
-    @DeleteMapping("{id}/linea/{lineaId}")
-    public Carrito deleteLinea(
-            @PathVariable Long id,
-            @PathVariable Long lineaId){
-        carritoServicio.deleteLinea(lineaId);
-        return carritoServicio.getCarrito(id);
-    } 
+    }
 
     @DeleteMapping("{id}")
     public void borrar(@PathVariable Long id){
@@ -86,3 +88,10 @@ public class ControladorCarrito {
     }
 
 }
+
+```
+
+
+#### Short summary: 
+
+empty definition using pc, found symbol in pc: _empty_/CarritoLinea#setCarrito#

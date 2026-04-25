@@ -43,7 +43,7 @@ public class CarritoServicio {
     }
 
     public List<CarritoLinea> getCarritoLinea(Long id){
-        List<CarritoLinea> carritoLinea = carritoLineaRepo.findByIdCarrito(id);
+        List<CarritoLinea> carritoLinea = carritoLineaRepo.findByCarrito_IdCarrito(id);
         return carritoLinea;
 
     }
@@ -70,21 +70,28 @@ public class CarritoServicio {
             total += linea.getCostaLinea();
         }
         carrito.setPrecioTotal(total);
+        carritoRepo.save(carrito);
     }
 
     @Transactional
-    public CarritoLinea addItem(Long id, CarritoLinea cl){
+    public CarritoLinea addItem(Long carritoId,Long articuloId, CarritoLinea cl){
         try {
 
-        Carrito carrito = carritoRepo.findByIdCarrito(id);
+        Carrito carrito = carritoRepo.findByIdCarrito(carritoId);
+        if (carrito == null) {
+        throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+    }
+
             if (cl.getPrecioUnitario() == null) {
-                cl.setPrecioUnitario(0L); // or fetch the price from your Articulo entity
-            }
+                cl.setPrecioUnitario(0L); 
+            } 
 
         cl.setCarrito(carrito);
-        cl.incrementArticulo(0);
+        cl.setIdArticulo(articuloId);
+        cl.setNumeroUnidades(cl.getNumeroUnidades());
+
         CarritoLinea saved = carritoLineaRepo.save(cl);
-        actualizarPrecioTotal(id);
+        actualizarPrecioTotal(carritoId);
         return saved;
         } catch (Exception e) {
             e.printStackTrace();
@@ -96,12 +103,12 @@ public class CarritoServicio {
     @Transactional
     public void deleteItem(Long id, Long articuloId) {
         try {
-            List<CarritoLinea> lineas = carritoLineaRepo.findByIdCarrito(id);
-            System.out.println("in delete outside of for");
+            List<CarritoLinea> lineas = carritoLineaRepo.findByCarrito_IdCarrito(id);
+            
             for (CarritoLinea linea : lineas) {
                 if (Objects.equals(linea.getIdArticulo(), articuloId)) {
-                    carritoLineaRepo.deleteByCarritoIdAndArticuloId(id, articuloId);
-                    System.out.println("in delete");
+                    carritoLineaRepo.deleteByCarrito_IdCarritoAndIdArticulo(id, articuloId);
+            
                 }
             }
             actualizarPrecioTotal(id);
@@ -109,6 +116,32 @@ public class CarritoServicio {
                 e.printStackTrace();
                 throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage());
             }
+    }
+
+    @Transactional
+    public void deleteLinea(Long lineaId) {
+        try {
+            CarritoLinea linea = carritoLineaRepo.findByIdWithCarrito(lineaId)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Linea not found"));
+            
+            Long carritoId = linea.getCarrito().getIdCarrito();
+            carritoLineaRepo.delete(linea);
+            carritoLineaRepo.flush();
+            
+            // Recalculate total directly
+            Carrito carrito = carritoRepo.findByIdCarrito(carritoId);
+            if (carrito != null && carrito.getCarritoLineas() != null) {
+                Long total = 0L;
+                for (CarritoLinea l : carrito.getCarritoLineas()) {
+                    total += l.getCostaLinea();
+                }
+                carrito.setPrecioTotal(total);
+                carritoRepo.save(carrito);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage());
+        }
     }
 
     public void deleteCart(Long id) {
